@@ -1,0 +1,12 @@
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrow{
+    height: 45px;
+    width: 2.5%;
+}
+.image-flex{
+    width: 30%;
+}
