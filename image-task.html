@@ -4,10 +4,35 @@
         <link rel="stylesheet" href="image-task.css">
     </head>
     <body>
-        <div class="img">
-            <img src="file:///Users/ahyconsulting07/Documents/image-task/images/left-arrow.png" class="arrow"/ @click="goToNextImg">
-            <img src="file:///Users/ahyconsulting07/Documents/image-task/images/sun.png" class="image-flex"/>
-            <img src="file:///Users/ahyconsulting07/Documents/image-task/images/right-arrow.png" class="arrow"/>
-        </div>    
+        <div class="img" x-data="AlpineComponent()">
+            <img src="file:///Users/ahyconsulting07/Documents/image-task/images/left-arrow.png" class="arrow" @click="prevImage()"/>
+            <img :src="currentImage" class="image-flex"/>
+            <img src="file:///Users/ahyconsulting07/Documents/image-task/images/right-arrow.png" class="arrow" @click="nextImage()"/>
+            <div class="image-counter">
+                <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
+            </div>
+        </div>  
+        <script>
+            function AlpineComponent() {
+                return {
+                    images: [
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/flower.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/tree.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/sun.png',
+                        
+                    ],
+                    currentIndex: 0,
+                    currentImage() {
+                        return this.images[this.currentIndex];
+                    },
+                    nextImage() {
+                        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                    },
+                    prevImage() {
+                        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                    }
+                }
+            }
+        </script>
     </body>
 </html>

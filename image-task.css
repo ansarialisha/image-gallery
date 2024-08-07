@@ -2,11 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .arrow{
     height: 45px;
     width: 2.5%;
+    cursor: pointer;
 }
 .image-flex{
-    width: 30%;
+    height: 500px;
+    width: 40%;
+    object-fit: cover;
+   
+}
+.image-counter {
+    position: absolute;
+    bottom: -30px;
+    font-size: 20px;
 }
