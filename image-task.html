@@ -2,35 +2,61 @@
     <head>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="image-task.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="img" x-data="AlpineComponent()">
             <img src="file:///Users/ahyconsulting07/Documents/image-task/images/left-arrow.png" class="arrow" @click="prevImage()"/>
-            <img :src="currentImage" class="image-flex"/>
+            <img :src="currentImage" class="image-flex" @click="blurBackground()"/>
             <img src="file:///Users/ahyconsulting07/Documents/image-task/images/right-arrow.png" class="arrow" @click="nextImage()"/>
             <div class="image-counter">
                 <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
             </div>
-        </div>  
+        </div> 
         <script>
             function AlpineComponent() {
                 return {
+                    currentIndex: 0,    
                     images: [
-                        'file:///Users/ahyconsulting07/Documents/image-task/images/flower.png',
-                        'file:///Users/ahyconsulting07/Documents/image-task/images/tree.png',
-                        'file:///Users/ahyconsulting07/Documents/image-task/images/sun.png',
-                        
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/1.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/2.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/3.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/4.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/5.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/6.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/7.png',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/8.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/9.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/10.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/11.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/12.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/13.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/14.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/15.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/16.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/17.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/18.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/19.jpg',
+                        'file:///Users/ahyconsulting07/Documents/image-task/images/20.jpg',
+
                     ],
-                    currentIndex: 0,
-                    currentImage() {
+                    blurBackground: function(){
+                        document.querySelector("body").classList.add("background-color");
+                        
+                    },
+                    currentImage: function() {
                         return this.images[this.currentIndex];
                     },
-                    nextImage() {
+                    nextImage: function() {
                         this.currentIndex = (this.currentIndex + 1) % this.images.length;
                     },
-                    prevImage() {
+                    prevImage: function() {
                         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                    },
+                    init(){
+                        setInterval(this.nextImage.bind(this), 5000);
                     }
+                    
                 }
             }
         </script>
