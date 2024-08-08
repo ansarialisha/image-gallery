@@ -11,10 +11,10 @@
     cursor: pointer;
 }
 .image-flex{
-    width: 40%;
+    width: 55%;
     cursor: pointer;
     object-fit: cover;
-   border-radius: 30px;
+    border-radius: 30px;
 }
 .image-counter {
     position: absolute;
@@ -22,15 +22,25 @@
     font-size: 20px;
 }
 .background-color{
-    background-color: F8EDED;
-    
-}
-@media only screen and (max-width: 700px) {
+    background-color: #beb8b8;
+}   
+@media (min-width:320px) and (max-width: 425px) {
     .arrow {
         height: 30px;
-        width: 5%;
+        width: 10%; 
+    }
+    .left{
+        position: absolute;
+        z-index: 1;
+        left: 20;
+    }
+    .right{
+        position: absolute;
+        z-index: 1;
+        right: 20;
     }
     .image-flex{
+        width: 90%;
         position: relative;
     }
     .image-counter {
@@ -40,3 +50,13 @@
    
     
 }
+@media (min-width:768px) and (max-width:1024px) {
+    .arrow {
+        height: 40px;
+        width: 5%; 
+    }
+    .image-flex{
+        width: 80%;
+        
+    }
+}   
