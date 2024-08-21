@@ -6,19 +6,23 @@
     </head>
     <body>
         <div class="img" x-data="imageSliderAlpineComponent()">
-            <img src="./images/left-arrow.png" class="arrow left" @click="prevImage()"/>
-            <img :src="currentImage" class="image-flex" @click="backgroundColorChange()"/>
-            <img src="./images/right-arrow.png" class="arrow right" @click="nextImage()"/>
+            <img src="./images/left-slider.png" class="arrow left" @click="prevImage()"/>
+            <img :src="currentImage" class="image-flex" @click="displayModal()" @mouseenter="clearInterval(interval);" @mouseout="autoPlayImages()"/>
+            <img src="./images/right-slider.png" class="arrow right" @click="nextImage()"/>
             <div class="image-counter">
                 <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
             </div>
+            <div x-show-="showModal" class="modal-image-container">
+                <img :src="currentImage"/>  
+                <div class="close-modal" @click="closeModal()"><img src="./images/close.png"></div>
+            </div>
         </div> 
-        
         <script>
             function imageSliderAlpineComponent() {
                 return {
+                    showModal: false,
                     interval: null,
-                    currentIndex: 0,    
+                    currentIndex: 0,   
                     images: [
                         './images/1.png',   
                         './images/2.png',
@@ -42,14 +46,18 @@
                         './images/20.jpg',
                     ],
                     init(){
-                      interval = setInterval(this.nextImage.bind(this), 5000);
-                        
+                      this.autoPlayImages();
                     },
-                    backgroundColorChange: function(){
-                        document.body.classList.toggle("background-color");
-                        if(this.backgroundColorChange !== true){
-                            clearInterval(interval);
-                        }
+                    displayModal: function(){
+                        this.showModal = true;
+                        clearInterval(this.interval);
+                    },
+                    closeModal: function(){
+                        this.showModal = false;
+                        this.autoPlayImages();
+                    },
+                    autoPlayImages: function(){
+                        this.interval = setInterval(this.nextImage.bind(this),2000); 
                     },
                     currentImage: function() {
                         return this.images[this.currentIndex];
